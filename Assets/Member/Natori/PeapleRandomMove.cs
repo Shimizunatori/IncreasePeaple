@@ -7,7 +7,7 @@ public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 {
     #region 宣言
     [SerializeField, Header("移動速度")]                private float _moveSpeed;
-    [SerializeField, Header("ゲームマネージャー")]      private GameManager GM;
+    //[SerializeField, Header("ゲームマネージャー")]      private GameManager GM;
     public float _timeUp;
     private Vector2 _enemyPos;
     private Vector2 _vec2;
@@ -16,6 +16,7 @@ public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private float _moveTime;
     private float _leaveTime;
     private bool _moveFlag;
+    private GameManager _gm;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -23,14 +24,15 @@ public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         _moveTime = 0;
         _leaveTime = 0;
         _moveFlag = true;
-        GM.GetComponent<GameManager>();
-        GM._gameEnd = false;
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gm.GetComponent<GameManager>();
+        _gm._gameEnd = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GM._gameEnd)
+        if (_gm._gameEnd)
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             return;
@@ -46,7 +48,7 @@ public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             _leaveTime += Time.deltaTime;
             if (_leaveTime >= _timeUp)
             {
-                GM._gameEnd = true;
+                _gm._gameEnd = true;
             }
             _enemyPos = this.transform.position;
             _moveTime -= Time.deltaTime;
@@ -74,6 +76,7 @@ public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         _moveFlag = false;
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //SE
+        SEManager.Instance.PlaySe(SEType.SE1);
     }
 
     //　マウスが離された時
@@ -89,45 +92,45 @@ public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             case "Build1":
                 if (this.gameObject.CompareTag("Peaple1"))
                 {
-                    GM._score++;
+                    _gm._score++;
                     Destroy(gameObject);
                 }
                 else
                 {
-                    GM._gameEnd = true;
+                    _gm._gameEnd = true;
                 }
                 break;
             case "Build2":
                 if (this.gameObject.CompareTag("Peaple2"))
                 {
-                    GM._score++;
+                    _gm._score++;
                     Destroy(gameObject);
                 }
                 else
                 {
-                    GM._gameEnd = true;
+                    _gm._gameEnd = true;
                 }
                 break;
             case "Build3":
                 if (this.gameObject.CompareTag("Peaple3"))
                 {
-                    GM._score++;
+                    _gm._score++;
                     Destroy(gameObject);
                 }
                 else
                 {
-                    GM._gameEnd = true;
+                    _gm._gameEnd = true;
                 }
                 break;
             case "Build4":
                 if (this.gameObject.CompareTag("Peaple4"))
                 {
-                    GM._score++;
+                    _gm._score++;
                     Destroy(gameObject);
                 }
                 else
                 {
-                    GM._gameEnd = true;
+                    _gm._gameEnd = true;
                 }
                 break;
         }

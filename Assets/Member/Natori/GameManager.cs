@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("場に存在する人間たち")]                public List<GameObject> _peapleList = new List<GameObject>();
     [SerializeField, Header("最大人間数")]          private int _maxPeaple;
     [SerializeField, Header("ビルたち")]            private List<GameObject> _buildList = new List<GameObject>();
+    [SerializeField]                                private GameObject _result;
     public int _score;
     public int _levelUpLine;
     public bool _gameEnd = false;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
         _buildList[1].SetActive(true);
         _score = 0;
         _gameEnd = false;
+        _result.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
         if (_gameEnd)
         {
             //ゲームオーバー処理
+            _result.SetActive(true);
         }
     }
 
