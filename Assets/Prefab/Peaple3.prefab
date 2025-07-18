@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6238955487512968973}
   - component: {fileID: 6238955487512968960}
   - component: {fileID: 3541003851626780114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Peaple3
-  m_TagString: Untagged
+  m_TagString: Peaple3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c27b8eed1578e40b79ffc4a6b6dd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangeA: {fileID: 0}
-  _rangeB: {fileID: 0}
   _moveSpeed: 3
+  GM: {fileID: 2250295384030643065, guid: 40cc05a804559b84586f954c36854253, type: 3}
+  _timeUp: 10
 --- !u!50 &6238955487512968960
 Rigidbody2D:
   serializedVersion: 4

@@ -3,48 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PeapleRandomMove : MonoBehaviour, IPointerClickHandler
+public class PeapleRandomMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     #region 宣言
-    [SerializeField, Header("移動範囲A")]               private Transform _rangeA;
-    [SerializeField, Header("移動範囲B")]               private Transform _rangeB;
     [SerializeField, Header("移動速度")]                private float _moveSpeed;
     [SerializeField, Header("ゲームマネージャー")]      private GameManager GM;
+    public float _timeUp;
     private Vector2 _enemyPos;
     private Vector2 _vec2;
     private float _vecX;
     private float _vecY;
     private float _moveTime;
+    private float _leaveTime;
     private bool _moveFlag;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         _moveTime = 0;
+        _leaveTime = 0;
         _moveFlag = true;
-        GM = GetComponent<GameManager>();
+        GM.GetComponent<GameManager>();
+        GM._gameEnd = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && !_moveFlag)
+        if (GM._gameEnd)
         {
-            this.transform.position = Input.mousePosition;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            return;
         }
-        if (Input.GetMouseButtonUp(0) && !_moveFlag)
+        if (!_moveFlag)
         {
-            //SE
-            _moveFlag = true;
+            Vector3 mouse = Input.mousePosition;
+            Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, 1));
+            this.transform.position = target;
         }
         if (_moveFlag)
         {
+            _leaveTime += Time.deltaTime;
+            if (_leaveTime >= _timeUp)
+            {
+                GM._gameEnd = true;
+            }
             _enemyPos = this.transform.position;
             _moveTime -= Time.deltaTime;
             if (_moveTime <= 0.0f)
             {
-                _vecX = Random.Range(_rangeA.transform.position.x, _rangeB.transform.position.x);
-                _vecY = Random.Range(_rangeA.transform.position.y, _rangeB.transform.position.y);
+                var A = new Vector2(-5, -2);
+                var B = new Vector2(5, 2);
+                _vecX = Random.Range(A.x, B.x);
+                _vecY = Random.Range(A.y, B.y);
                 var _lastEnemyPos = _enemyPos;
                 _vec2 = new Vector2(_vecX, _vecY);
                 gameObject.GetComponent<Rigidbody2D>().velocity = (_vec2 - _lastEnemyPos).normalized * _moveSpeed;
@@ -57,41 +68,66 @@ public class PeapleRandomMove : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    //　マウスが押された時
+    public void OnPointerDown(PointerEventData eventData)
     {
         _moveFlag = false;
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Debug.Log(_moveFlag);
         //SE
+    }
+
+    //　マウスが離された時
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _moveFlag = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GM._score++;
         switch (other.tag)
         {
             case "Build1":
                 if (this.gameObject.CompareTag("Peaple1"))
                 {
+                    GM._score++;
                     Destroy(gameObject);
+                }
+                else
+                {
+                    GM._gameEnd = true;
                 }
                 break;
             case "Build2":
                 if (this.gameObject.CompareTag("Peaple2"))
                 {
+                    GM._score++;
                     Destroy(gameObject);
+                }
+                else
+                {
+                    GM._gameEnd = true;
                 }
                 break;
             case "Build3":
                 if (this.gameObject.CompareTag("Peaple3"))
                 {
+                    GM._score++;
                     Destroy(gameObject);
+                }
+                else
+                {
+                    GM._gameEnd = true;
                 }
                 break;
             case "Build4":
                 if (this.gameObject.CompareTag("Peaple4"))
                 {
+                    GM._score++;
                     Destroy(gameObject);
+                }
+                else
+                {
+                    GM._gameEnd = true;
                 }
                 break;
         }

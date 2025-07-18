@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1851106064860233089}
   - component: {fileID: 5674675838250867910}
   - component: {fileID: 7519982857061174447}
+  - component: {fileID: 2934575417099194870}
   m_Layer: 0
   m_Name: Office2
-  m_TagString: Untagged
+  m_TagString: Peaple2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2934575417099194870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7175361103996574140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b323ddb6aeffd44e97e45eaf3fc73f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
