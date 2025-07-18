@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     [Header("ê‚É‘¶İ‚·‚élŠÔ‚½‚¿")] public List<GameObject> _peapleList = new List<GameObject>();
     [SerializeField, Header("Å‘ålŠÔ”")] private int _maxPeaple;
     [SerializeField, Header("ƒrƒ‹‚½‚¿")] private List<GameObject> _buildList = new List<GameObject>();
-    private int _peapleCount;
     public int _score;
+    public int _levelUp;
     // Start is called before the first frame update
     void Start()
     {
-        //_buildList
+        _buildList[0].SetActive(true);
+        _buildList[1].SetActive(true);
     }
 
     // Update is called once per frame
@@ -24,9 +25,13 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Spawn");
             var _person = Instantiate(_peaple[_randomPeaple], transform.position, Quaternion.identity);
-            _person.transform.parent = transform;
+            //_person.transform.parent = transform;
             _peapleList.Add(_person);
             _person.gameObject.GetComponent<SpriteRenderer>().sortingOrder = _randomPeaple;
+        }
+        if (_score >= _levelUp)
+        {
+            _buildList[2].SetActive(true);
         }
     }
 }

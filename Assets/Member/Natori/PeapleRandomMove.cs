@@ -28,39 +28,40 @@ public class PeapleRandomMove : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        if (!_moveFlag)
+        if (Input.GetMouseButton(0) && !_moveFlag)
         {
-            if (Input.GetMouseButton(0))
-            {
-                this.transform.position = Input.mousePosition;
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                //SE
-                _moveFlag = true;
-            }
-            return;
+            this.transform.position = Input.mousePosition;
         }
-        _enemyPos = this.transform.position;
-        _moveTime -= Time.deltaTime;
-        if (_moveTime <= 0.0f)
+        if (Input.GetMouseButtonUp(0) && !_moveFlag)
         {
-            _vecX = Random.Range(_rangeA.transform.position.x, _rangeB.transform.position.x);
-            _vecY = Random.Range(_rangeA.transform.position.y, _rangeB.transform.position.y);
-            var _lastEnemyPos = _enemyPos;
-            _vec2 = new Vector2(_vecX, _vecY);
-            gameObject.GetComponent<Rigidbody2D>().velocity = (_vec2 - _lastEnemyPos).normalized * _moveSpeed;
-            _moveTime = 1.0f;
+            //SE
+            _moveFlag = true;
         }
-        if (Mathf.Approximately(_vec2.x, _enemyPos.x) && Mathf.Approximately(_vec2.y, _enemyPos.y))
+        if (_moveFlag)
         {
-            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            _enemyPos = this.transform.position;
+            _moveTime -= Time.deltaTime;
+            if (_moveTime <= 0.0f)
+            {
+                _vecX = Random.Range(_rangeA.transform.position.x, _rangeB.transform.position.x);
+                _vecY = Random.Range(_rangeA.transform.position.y, _rangeB.transform.position.y);
+                var _lastEnemyPos = _enemyPos;
+                _vec2 = new Vector2(_vecX, _vecY);
+                gameObject.GetComponent<Rigidbody2D>().velocity = (_vec2 - _lastEnemyPos).normalized * _moveSpeed;
+                _moveTime = 1.0f;
+            }
+            if (Mathf.Approximately(_vec2.x, _enemyPos.x) && Mathf.Approximately(_vec2.y, _enemyPos.y))
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
         }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         _moveFlag = false;
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Debug.Log(_moveFlag);
         //SE
     }
 
