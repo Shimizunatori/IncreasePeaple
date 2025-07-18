@@ -18,6 +18,6 @@ public class Button : MonoBehaviour
         SEManager.Instance.PlaySe(SEType.SE2);
         SceneManager.LoadScene("TitleScene");
         SEManager.Instance.StopBgm();
-        SEManager.Instance.PlayBgm(BGMType.BGM2);
+        SEManager.Instance.PlayBgm(BGMType.BGM1);
     }
 }
