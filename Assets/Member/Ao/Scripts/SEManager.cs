@@ -39,31 +39,31 @@ struct SEData
     public bool Loop;
 }
 
-public enum RandomSEType
-{
-    Start,
-    PeapleCatch,
-    PeapleDrop,
-    Null
-}
+//public enum RandomSEType
+//{
+//    Start,
+//    PeapleCatch,
+//    PeapleDrop,
+//    Null
+//}
 
-public enum RandomState
-{
-    Start,
-    PeapleCatch,
-    PeapleDrop,
-    Null
-}
+//public enum RandomState
+//{
+//    Start,
+//    PeapleCatch,
+//    PeapleDrop,
+//    Null
+//}
 
-[System.Serializable]
-struct RandomSEData
-{
-    public RandomSEType Type;
-    public AudioClip Clip;
-    [Range(0, 1)]
-    public float Volume;
-    public bool Loop;
-}
+//[System.Serializable]
+//struct RandomSEData
+//{
+//    public RandomSEType Type;
+//    public AudioClip Clip;
+//    [Range(0, 1)]
+//    public float Volume;
+//    public bool Loop;
+//}
 
 
 public class SEManager : MonoBehaviour
@@ -80,10 +80,10 @@ public class SEManager : MonoBehaviour
     [SerializeField]
     private AudioSource bgmSource = null;
 
-    [SerializeField]
-    List<AudioClip> _randomClip = new List<AudioClip>();
-    [SerializeField]
-    private List<RandomSEData> _randomData = new List<RandomSEData>();
+    //[SerializeField]
+    //List<AudioClip> _randomClip = new List<AudioClip>();
+    //[SerializeField]
+    //private List<RandomSEData> _randomData = new List<RandomSEData>();
     [SerializeField]
     private AudioSource seSource = null;
 
@@ -140,5 +140,4 @@ public class SEManager : MonoBehaviour
     {
         seSource.Stop();
     }
-
 }
