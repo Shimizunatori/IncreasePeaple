@@ -321,8 +321,8 @@ MonoBehaviour:
     Volume: 0.4
     Loop: 0
   - Type: 1
-    Clip: {fileID: 0}
-    Volume: 0
+    Clip: {fileID: 8300000, guid: 6667590d766eb864b8b493e891b833f8, type: 3}
+    Volume: 0.5
     Loop: 0
   - Type: 2
     Clip: {fileID: 0}
