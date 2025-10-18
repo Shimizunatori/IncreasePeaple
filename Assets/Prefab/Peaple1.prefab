@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6238955487512968973}
   - component: {fileID: 6238955487512968960}
   - component: {fileID: 3541003851626780114}
+  - component: {fileID: 1608370602446464855}
   m_Layer: 6
   m_Name: Peaple1
   m_TagString: Peaple1
@@ -138,3 +139,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.5, y: 0}
   m_Size: {x: 10, y: 20}
   m_Direction: 0
+--- !u!114 &1608370602446464855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6238955487512968972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c008f954fe54a8bb972de1018a2cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RootBone: {fileID: 0}
+  m_BoneTransforms: []
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_UseBatching: 1
+  m_AlwaysUpdate: 1
+  m_AutoRebind: 0
